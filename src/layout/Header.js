@@ -37,10 +37,11 @@ const Header = () => {
             className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow text-white"
           >
             <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="text-info">Notificatrion Title</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <button className="btn btn-primary btn-block">
+                  View All Notic
+                </button>
               </div>
             </div>
           </div>
@@ -49,8 +50,8 @@ const Header = () => {
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
-                src="/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                alt=""
+                src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=456&q=80"
+                alt="avatar"
               />
             </div>
           </label>
@@ -61,11 +62,7 @@ const Header = () => {
             <li>
               <Link to="" className="justify-between">
                 Profile
-                <span className="badge">New</span>
               </Link>
-            </li>
-            <li>
-              <Link to="">Settings</Link>
             </li>
             <li to="">
               <Link to="">Logout</Link>
