@@ -1,5 +1,6 @@
 import React from "react";
 import SectionTitle from "../component/SectionTitle";
+import InputSelect from "../component/InputSelect";
 
 const Payment = () => {
   return (
@@ -25,13 +26,13 @@ const Payment = () => {
               <td>Quality Control Specialist</td>
               <td>500</td>
               <td>
-                <select className="select select-bordered bg-transparent select-xs">
+                <InputSelect className="select select-bordered bg-transparent select-xs">
                   <option disabled selected value="padding">
                     Padding
                   </option>
                   <option value="approved">Approved</option>
                   <option value="success">Success</option>
-                </select>
+                </InputSelect>
               </td>
             </tr>
             {/* row 2 */}
@@ -42,13 +43,13 @@ const Payment = () => {
               <td>500</td>
 
               <td>
-                <select className="select select-bordered bg-transparent select-xs">
+                <InputSelect className="select select-bordered bg-transparent select-xs">
                   <option disabled selected value="padding">
                     Padding
                   </option>
                   <option value="approved">Approved</option>
                   <option value="success">Success</option>
-                </select>
+                </InputSelect>
               </td>
             </tr>
             {/* row 3 */}
@@ -58,13 +59,13 @@ const Payment = () => {
               <td>Tax Accountant</td>
               <td>500</td>
               <td>
-                <select className="select select-bordered bg-transparent select-xs">
+                <InputSelect className="select select-bordered bg-transparent select-xs">
                   <option disabled selected value="padding">
                     Padding
                   </option>
                   <option value="approved">Approved</option>
                   <option value="success">Success</option>
-                </select>
+                </InputSelect>
               </td>
             </tr>
           </tbody>

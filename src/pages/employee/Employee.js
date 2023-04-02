@@ -1,10 +1,11 @@
 import React from "react";
-import SectionTitle from "../component/SectionTitle";
+import Button from "../../component/Button";
+import SectionTitle from "../../component/SectionTitle";
 
 const Employes = () => {
   return (
     <div className="py-10">
-      <SectionTitle>All Employes Details</SectionTitle>
+      <SectionTitle>All Employee Details</SectionTitle>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
@@ -13,6 +14,7 @@ const Employes = () => {
               <th>No</th>
               <th>Name</th>
               <th>Project Name</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -22,6 +24,7 @@ const Employes = () => {
               <th>1</th>
               <td>Cy Ganderton</td>
               <td>Quality Control Specialist</td>
+              <td>Enginner</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
                   remove
@@ -33,6 +36,7 @@ const Employes = () => {
               <th>2</th>
               <td>Hart Hagerty</td>
               <td>Desktop Support Technician</td>
+              <td>Manager</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
                   remove
@@ -44,6 +48,7 @@ const Employes = () => {
               <th>3</th>
               <td>Brice Swyre</td>
               <td>Tax Accountant</td>
+              <td>Enginner</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
                   remove
@@ -52,6 +57,11 @@ const Employes = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center mt-10">
+        <Button path={"/employeeAdd"} type={"link"}>
+          Add Employee
+        </Button>
       </div>
     </div>
   );

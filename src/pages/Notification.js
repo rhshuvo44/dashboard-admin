@@ -1,7 +1,8 @@
 import React from "react";
-import SectionTitle from "../component/SectionTitle";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import SectionTitle from "../component/SectionTitle";
+import Input from "../component/Input";
 
 const Notification = () => {
   const { register, handleSubmit } = useForm();
@@ -13,7 +14,7 @@ const Notification = () => {
     <div className="card shadow-2xl">
       <SectionTitle>Notification Create</SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)} className="p-10">
-        <input
+        <Input
           type="text"
           placeholder="Notification Title"
           required
@@ -26,7 +27,8 @@ const Notification = () => {
           required
           {...register("desciption")}
         ></textarea>
-        <input type="submit" className="btn btn-primary" value="Submit" />
+
+        <Input type="submit" className="btn btn-primary" value="Submit" />
       </form>
     </div>
   );

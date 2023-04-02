@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Projects = () => {
   const navigate = useNavigate();
   const projectDetails = (id) => {
-    navigate(`projectDetails/${id}`);
+    navigate(`/projectDetails/${id}`);
   };
   return (
     <div className="py-10">

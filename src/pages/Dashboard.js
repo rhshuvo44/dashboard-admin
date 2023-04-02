@@ -14,7 +14,7 @@ const Dashboard = () => {
         <ul className="menu p-4 w-80 bg-base-100 text-base-content gap-4 mt-16">
           {/* <!-- Sidebar content here --> */}
           <li>
-            <NavLink to="/">Dashboard</NavLink>
+            <NavLink to="/">Analysis</NavLink>
           </li>
           <li>
             <NavLink to="employee">Employee</NavLink>

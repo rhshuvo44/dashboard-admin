@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../img/logo/sg-white.png";
+import user from "../img/user/ripon.jpg";
 const Header = () => {
   return (
     <div className="navbar bg-base-100 top-0 fixed z-1 px-5 lg:px-20 text-white">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          SARKAR
+        <Link to="/">
+          <img src={logo} alt="logo" title="logo" className="w-32" />
         </Link>
       </div>
       <div className="flex-none gap-2">
@@ -40,7 +41,7 @@ const Header = () => {
               <span className="text-info">Notificatrion Title</span>
               <div className="card-actions">
                 <button className="btn btn-primary btn-block">
-                  View All Notic
+                  View Notice
                 </button>
               </div>
             </div>
@@ -49,10 +50,7 @@ const Header = () => {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img
-                src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=456&q=80"
-                alt="avatar"
-              />
+              <img src={user} alt="avatar" />
             </div>
           </label>
           <ul
@@ -60,12 +58,12 @@ const Header = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="" className="justify-between">
+              <Link to="/profile" className="justify-between">
                 Profile
               </Link>
             </li>
-            <li to="">
-              <Link to="">Logout</Link>
+            <li>
+              <button>Logout</button>
             </li>
           </ul>
         </div>
