@@ -13,9 +13,7 @@ const Dashboard = () => {
         <label htmlFor="admin-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 bg-base-100 text-base-content gap-4 mt-16">
           {/* <!-- Sidebar content here --> */}
-          <li>
-            <NavLink to="analysis">Analysis</NavLink>
-          </li>
+          
           <li>
             <NavLink to="employee">Employee</NavLink>
           </li>
