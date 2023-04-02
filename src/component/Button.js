@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Button = ({ children, path, type }) => {
+const Button = ({ children, path }) => {
   return (
-    <Link type={type} to={path} className="btn btn-primary">
+    <Link to={path} className="btn btn-primary capitalize">
       {children}
     </Link>
   );

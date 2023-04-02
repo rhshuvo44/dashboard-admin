@@ -46,7 +46,7 @@ const EmpoleeAdd = () => {
           </InputSelect>
           <Input
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary capitalize"
             value="Employee Add"
           />
         </form>

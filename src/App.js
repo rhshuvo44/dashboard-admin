@@ -1,16 +1,18 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import Header from "./layout/Header";
+import Analysis from "./pages/Analysis";
 import Dashboard from "./pages/Dashboard";
-import Notification from "./pages/Notification";
 import Payment from "./pages/Payment";
-import Projects from "./pages/project/Projects";
-import ProjectDetails from "./pages/project/ProjectDetails";
-import ProjectAdd from "./pages/project/ProjectAdd";
-import { Toaster } from "react-hot-toast";
+import Profile from "./pages/Profile";
 import Employes from "./pages/employee/Employee";
 import EmpoleeAdd from "./pages/employee/EmployeeAdd";
-import Profile from "./pages/Profile";
-import Analysis from "./pages/Analysis";
+import Notification from "./pages/notification/Notification";
+import ProjectAdd from "./pages/project/ProjectAdd";
+import ProjectDetails from "./pages/project/ProjectDetails";
+import Projects from "./pages/project/Projects";
+import NoticeAll from "./pages/notification/NoticeAll";
+import NoticeDetails from "./pages/notification/NoticeDetails";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/projectDetails/:id" element={<ProjectDetails />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/notification" element={<Notification />} />
+          <Route path="/noticeAll" element={<NoticeAll />} />
+          <Route path="/noticeDetails/:id" element={<NoticeDetails />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>

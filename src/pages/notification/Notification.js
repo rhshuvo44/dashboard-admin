@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import SectionTitle from "../component/SectionTitle";
-import Input from "../component/Input";
+import Input from "../../component/Input";
+import SectionTitle from "../../component/SectionTitle";
 
 const Notification = () => {
   const { register, handleSubmit } = useForm();

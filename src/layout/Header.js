@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo/sg-white.png";
 import user from "../img/user/ripon.jpg";
+import Button from "../component/Button";
 const Header = () => {
   return (
     <div className="navbar bg-base-100 top-0 fixed z-1 px-5 lg:px-20 text-white">
@@ -39,23 +40,26 @@ const Header = () => {
           >
             <div className="card-body">
               <span className="text-info">Notificatrion Title</span>
-              <div className="card-actions">
-                <button className="btn btn-primary btn-block">
-                  View Notice
-                </button>
+              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+              <div className="card-actions flex justify-center">
+                <Button path="/noticeAll">View All Notice</Button>
               </div>
             </div>
           </div>
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-24 rounded-full">
               <img src={user} alt="avatar" />
             </div>
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-52 gap-2 "
           >
             <li>
               <Link to="/profile" className="justify-between">

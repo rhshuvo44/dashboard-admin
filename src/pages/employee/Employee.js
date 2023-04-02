@@ -59,7 +59,7 @@ const Employes = () => {
         </table>
       </div>
       <div className="flex justify-center mt-10">
-        <Button path={"/employeeAdd"} type={"link"}>
+        <Button path={"/employeeAdd"}>
           Add Employee
         </Button>
       </div>
