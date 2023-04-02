@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../component/Button";
 import InputSelect from "../../component/InputSelect";
 import SectionTitle from "../../component/SectionTitle";
 
 const Projects = () => {
+  const count = 89;
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(10);
+  const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
       <SectionTitle>All Projects</SectionTitle>
@@ -93,10 +97,20 @@ const Projects = () => {
           </tbody>
         </table>
       </div>
+      <div className="flex justify-center mt-5">
+        <div className="btn-group ">
+          {[...Array(pages).keys()].map((number) => (
+            <button
+              onClick={() => setPage(number)}
+              className={`btn ${page === number && "btn-active"}`}
+            >
+              {number + 1}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="flex justify-center mt-10">
-        <Button path={"/projectadd"}>
-          Add Project
-        </Button>
+        <Button path={"/projectadd"}>Add Project</Button>
       </div>
     </div>
   );

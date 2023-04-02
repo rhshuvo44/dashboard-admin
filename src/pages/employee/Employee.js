@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../component/Button";
 import SectionTitle from "../../component/SectionTitle";
 
 const Employes = () => {
+  const count = 89;
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(10);
+  const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
       <SectionTitle>All Employee Details</SectionTitle>
@@ -21,7 +25,7 @@ const Employes = () => {
           <tbody>
             {/* row 1 */}
             <tr>
-              <th>1</th>
+              <td>1</td>
               <td>Cy Ganderton</td>
               <td>Quality Control Specialist</td>
               <td>Enginner</td>
@@ -33,7 +37,7 @@ const Employes = () => {
             </tr>
             {/* row 2 */}
             <tr>
-              <th>2</th>
+              <td>2</td>
               <td>Hart Hagerty</td>
               <td>Desktop Support Technician</td>
               <td>Manager</td>
@@ -45,7 +49,7 @@ const Employes = () => {
             </tr>
             {/* row 3 */}
             <tr>
-              <th>3</th>
+              <td>3</td>
               <td>Brice Swyre</td>
               <td>Tax Accountant</td>
               <td>Enginner</td>
@@ -58,10 +62,20 @@ const Employes = () => {
           </tbody>
         </table>
       </div>
+      <div className="flex justify-center mt-5">
+        <div className="btn-group ">
+          {[...Array(pages).keys()].map((number) => (
+            <button
+              onClick={() => setPage(number)}
+              className={`btn ${page === number && "btn-active"}`}
+            >
+              {number + 1}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="flex justify-center mt-10">
-        <Button path={"/employeeAdd"}>
-          Add Employee
-        </Button>
+        <Button path={"/employeeAdd"}>Add Employee</Button>
       </div>
     </div>
   );
