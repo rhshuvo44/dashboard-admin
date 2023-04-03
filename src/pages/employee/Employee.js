@@ -4,8 +4,9 @@ import SectionTitle from "../../component/SectionTitle";
 
 const Employes = () => {
   const count = 89;
+  const size = 10;
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(10);
+  // const [size, setSize] = useState(10);
   const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
@@ -18,6 +19,7 @@ const Employes = () => {
               <th>No</th>
               <th>Name</th>
               <th>Project Name</th>
+              <th>Phone</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
@@ -28,6 +30,7 @@ const Employes = () => {
               <td>1</td>
               <td>Cy Ganderton</td>
               <td>Quality Control Specialist</td>
+              <td>+8801777361861</td>
               <td>Enginner</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
@@ -40,6 +43,7 @@ const Employes = () => {
               <td>2</td>
               <td>Hart Hagerty</td>
               <td>Desktop Support Technician</td>
+              <td>+8801777361861</td>
               <td>Manager</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
@@ -52,6 +56,7 @@ const Employes = () => {
               <td>3</td>
               <td>Brice Swyre</td>
               <td>Tax Accountant</td>
+              <td>+8801777361861</td>
               <td>Enginner</td>
               <td>
                 <button className="btn btn-xs btn-error text-white">
@@ -65,7 +70,7 @@ const Employes = () => {
       <div className="flex justify-center mt-5">
         <div className="btn-group ">
           {[...Array(pages).keys()].map((number) => (
-            <button
+            <button key={number}
               onClick={() => setPage(number)}
               className={`btn ${page === number && "btn-active"}`}
             >

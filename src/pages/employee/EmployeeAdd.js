@@ -1,9 +1,8 @@
 import React from "react";
-import SectionTitle from "../../component/SectionTitle";
-import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import Input from "../../component/Input";
-import InputSelect from "../../component/InputSelect";
+import SectionTitle from "../../component/SectionTitle";
 
 const EmpoleeAdd = () => {
   const { register, handleSubmit } = useForm();
@@ -16,34 +15,38 @@ const EmpoleeAdd = () => {
       <div className="card-body">
         <SectionTitle>Employee Add For Project</SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)} className="px-10">
-          <Input
+          <input
             type="text"
             placeholder="Employee Name"
-            required
-            className="input input-bordered w-full bg-transparent"
+            className="input input-bordered w-full bg-transparent my-2"
             {...register("name")}
           />
-          <Input
+          <input
             type="email"
             placeholder="Employee Email"
-            required
-            className="input input-bordered w-full bg-transparent"
+            className="input input-bordered w-full bg-transparent my-2"
             {...register("email")}
           />
-          <InputSelect className="select select-bordered w-full bg-transparent select-xl">
+          <select
+            {...register("project")}
+            className="select select-bordered w-full bg-transparent select-xl my-2"
+          >
             <option disabled selected value="project Select">
               Project Select
             </option>
             <option value="project 1">project 1</option>
             <option value="project 2">project 2</option>
-          </InputSelect>
-          <InputSelect className="select select-bordered w-full bg-transparent select-xl">
+          </select>
+          <select
+            {...register("role")}
+            className="select select-bordered w-full bg-transparent select-xl my-2"
+          >
             <option disabled selected value="employess role">
               Employess role
             </option>
             <option value="enginner">Enginner</option>
             <option value="manager">Manager</option>
-          </InputSelect>
+          </select>
           <Input
             type="submit"
             className="btn btn-primary capitalize"

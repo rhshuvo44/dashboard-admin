@@ -6,7 +6,7 @@ import SectionTitle from "../../component/SectionTitle";
 // ===========img host api=====================
 const imgApi = "84a5698c1163075e540df1dc6008c8cf";
 
-const ProjectAdd = () => {
+const UpdateProfile = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     //  ==============image hosting api==================
@@ -23,46 +23,49 @@ const ProjectAdd = () => {
         if (result.success) {
           const img = result.data.url;
           console.log(img);
-          //   const projectInfo = {
+          //   const updateProfile = {
           //     //   email: user.email,
           //     name: data.name,
           //     number: data.number,
           //     img: img,
           //   };
-
           //  =========== backend api===========================
-
-          //   BackendApiUrl.post("/project", projectInfo).then((data) => {
+          //   BackendApiUrl.post("", updateProfile).then((data) => {
           //     if (data) {
-          //       toast.success("Add Your Project");
+          //       toast.success("Update Your Profile");
           //     } else {
-          //       toast.error("Faild to add Your Project");
+          //       toast.error("Faild to Update Your Profile");
           //     }
           //   });
         }
       });
   };
   return (
-    <div className="card shadow-xl">
+    <div className="card  shadow-xl">
       <div className="card-body">
-        <SectionTitle> Add New Project</SectionTitle>
+        <SectionTitle>Update Your Profile</SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)} className="px-10">
           <input
             type="text"
-            placeholder="Project Name"
-            required
+            placeholder="Name"
             className="input input-bordered w-full bg-transparent my-2"
-            {...register("projectName")}
+            {...register("name")}
           />
-          <textarea
-            className="textarea textarea-bordered w-full bg-transparent my-2"
-            placeholder="Project Desciption"
-            required
-            {...register("projectDesciption")}
-          ></textarea>
+          <input
+            type="email"
+            value="abc@gmail.com"
+            disabled
+            className="input input-bordered w-full bg-transparent my-2"
+            {...register("email")}
+          />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            className="input input-bordered w-full bg-transparent my-2"
+            {...register("phone")}
+          />
           <input
             type="file"
-            required
             className="file-input file-input-bordered w-full bg-transparent my-2"
             multiple
             {...register("photo")}
@@ -70,7 +73,7 @@ const ProjectAdd = () => {
           <Input
             type="submit"
             className="btn btn-primary capitalize"
-            value="Add New Project"
+            value="Update Profile"
           />
         </form>
       </div>
@@ -78,4 +81,4 @@ const ProjectAdd = () => {
   );
 };
 
-export default ProjectAdd;
+export default UpdateProfile;
