@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BackendApiUrl = axios.create({
-  baseURL: "https://some-domain.com/api/",
+  baseURL: "https://jsonplaceholder.typicode.com/",
   headers: {
     "content-type": "application/json",
     authorization: `Bearer ${localStorage.getItem("accessToken")}`,

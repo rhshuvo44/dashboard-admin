@@ -3,15 +3,22 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import Input from "../../component/Input";
 import SectionTitle from "../../component/SectionTitle";
+import BackendApiUrl from "../../api/BackendApiUrl";
 
 const EmpoleeAdd = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    toast.success("Success Create Empolyee");
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (employeeInfo) => {
+    BackendApiUrl.post("/posts", employeeInfo).then((data) => {
+      if (data) {
+        toast.success("Your New Employee Added");
+        reset();
+      } else {
+        toast.error("Faild to add Your Employee");
+      }
+    });
   };
   return (
-    <div className="card  shadow-xl">
+    <div className="card shadow-xl">
       <div className="card-body">
         <SectionTitle>Employee Add For Project</SectionTitle>
         <form onSubmit={handleSubmit(onSubmit)} className="px-10">

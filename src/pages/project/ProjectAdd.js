@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Input from "../../component/Input";
 import SectionTitle from "../../component/SectionTitle";
+import BackendApiUrl from "../../api/BackendApiUrl";
+import { toast } from "react-hot-toast";
 
 // ===========img host api=====================
 const imgApi = "84a5698c1163075e540df1dc6008c8cf";
@@ -22,23 +24,21 @@ const ProjectAdd = () => {
       .then((result) => {
         if (result.success) {
           const img = result.data.url;
-          console.log(img);
-          //   const projectInfo = {
-          //     //   email: user.email,
-          //     name: data.name,
-          //     number: data.number,
-          //     img: img,
-          //   };
+          const projectInfo = {
+            title: data.title,
+            desciption: data.desciption,
+            img,
+          };
 
           //  =========== backend api===========================
 
-          //   BackendApiUrl.post("/project", projectInfo).then((data) => {
-          //     if (data) {
-          //       toast.success("Add Your Project");
-          //     } else {
-          //       toast.error("Faild to add Your Project");
-          //     }
-          //   });
+          BackendApiUrl.post("/project", projectInfo).then((data) => {
+            if (data) {
+              toast.success("Add Your Project");
+            } else {
+              toast.error("Faild to add Your Project");
+            }
+          });
         }
       });
   };
@@ -52,13 +52,13 @@ const ProjectAdd = () => {
             placeholder="Project Name"
             required
             className="input input-bordered w-full bg-transparent my-2"
-            {...register("projectName")}
+            {...register("title")}
           />
           <textarea
             className="textarea textarea-bordered w-full bg-transparent my-2"
             placeholder="Project Desciption"
             required
-            {...register("projectDesciption")}
+            {...register("desciption")}
           ></textarea>
           <input
             type="file"

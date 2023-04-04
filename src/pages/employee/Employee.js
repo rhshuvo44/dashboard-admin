@@ -1,12 +1,32 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import BackendApiUrl from "../../api/BackendApiUrl";
 import Button from "../../component/Button";
 import SectionTitle from "../../component/SectionTitle";
-
 const Employes = () => {
+ 
   const count = 89;
   const size = 10;
+  // const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
-  // const [size, setSize] = useState(10);
+
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => await BackendApiUrl.get("/users"),
+  });
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+  const removeEmployee = (id) => {
+    console.log(id);
+    refetch();
+    toast.success("Successfully Remove Employee");
+  };
   const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
@@ -25,52 +45,31 @@ const Employes = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <td>1</td>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>+8801777361861</td>
-              <td>Enginner</td>
-              <td>
-                <button className="btn btn-xs btn-error text-white">
-                  remove
-                </button>
-              </td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <td>2</td>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>+8801777361861</td>
-              <td>Manager</td>
-              <td>
-                <button className="btn btn-xs btn-error text-white">
-                  remove
-                </button>
-              </td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <td>3</td>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>+8801777361861</td>
-              <td>Enginner</td>
-              <td>
-                <button className="btn btn-xs btn-error text-white">
-                  remove
-                </button>
-              </td>
-            </tr>
+            {users.data.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <td>{user.phone}</td>
+                <td>Enginner</td>
+                <td>
+                  <button
+                    onClick={() => removeEmployee(user.id)}
+                    className="btn btn-xs btn-error text-white"
+                  >
+                    remove
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
       <div className="flex justify-center mt-5">
         <div className="btn-group ">
           {[...Array(pages).keys()].map((number) => (
-            <button key={number}
+            <button
+              key={number}
               onClick={() => setPage(number)}
               className={`btn ${page === number && "btn-active"}`}
             >

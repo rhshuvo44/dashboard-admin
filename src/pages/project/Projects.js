@@ -3,11 +3,30 @@ import { Link } from "react-router-dom";
 import Button from "../../component/Button";
 import InputSelect from "../../component/InputSelect";
 import SectionTitle from "../../component/SectionTitle";
+import BackendApiUrl from "../../api/BackendApiUrl";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 const Projects = () => {
   const count = 89;
+  const size = 10;
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(10);
+  const {
+    data: projects,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["projects"],
+    queryFn: async () => await BackendApiUrl.get("/users"),
+  });
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+  const projectStatus = (id) => {
+    // ============ BACKEND POST API ==============
+    refetch();
+    toast.success("Successfully Remove Employee");
+  };
   const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
@@ -18,82 +37,40 @@ const Projects = () => {
           <thead>
             <tr>
               <th>No</th>
-              <th>Avatar</th>
               <th>Name</th>
+              <th>Location</th>
               <th>Status</th>
               <th>Details</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <td>1</td>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="running">Running</option>
-                  <option value="complete">Completed</option>
-                </InputSelect>
-              </td>
-              <td>
-                <Link
-                  to={`/projectDetails/${2}`}
-                  className="btn btn-xs btn-info"
-                >
-                  Details
-                </Link>
-              </td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <td>2</td>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="running">Running</option>
-                  <option value="complete">Completed</option>
-                </InputSelect>
-              </td>
-              <td>
-                <Link
-                  to={`/projectDetails/${2}`}
-                  className="btn btn-xs btn-info"
-                >
-                  Details
-                </Link>
-              </td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <td>3</td>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="running">Running</option>
-                  <option value="complete">Completed</option>
-                </InputSelect>
-              </td>
-              <td>
-                <Link
-                  to={`/projectDetails/${2}`}
-                  className="btn btn-xs btn-info"
-                >
-                  Details
-                </Link>
-              </td>
-            </tr>
+            {projects.data.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.phone}</td>
+                <td>
+                  <InputSelect
+                    onChange={() => projectStatus(user.id)}
+                    className="select select-bordered bg-transparent select-xs"
+                  >
+                    <option disabled selected value="padding">
+                      Padding
+                    </option>
+                    <option value="running">Running</option>
+                    <option value="complete">Completed</option>
+                  </InputSelect>
+                </td>
+                <td>
+                  <Link
+                    to={`/projectDetails/${user.id}`}
+                    className="btn btn-xs btn-info"
+                  >
+                    Details
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
