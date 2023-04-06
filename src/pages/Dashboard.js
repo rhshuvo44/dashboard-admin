@@ -24,6 +24,9 @@ const Dashboard = () => {
             <NavLink to="project">Projects</NavLink>
           </li>
           <li>
+            <NavLink to="requisition">Requisition</NavLink>
+          </li>
+          <li>
             <NavLink to="Notification">Notification</NavLink>
           </li>
         </ul>

@@ -25,7 +25,7 @@ const Projects = () => {
   const projectStatus = (id) => {
     // ============ BACKEND POST API ==============
     refetch();
-    toast.success("Successfully Remove Employee");
+    toast.success("Successfully update Project Status");
   };
   const pages = Math.ceil(count / size);
   return (

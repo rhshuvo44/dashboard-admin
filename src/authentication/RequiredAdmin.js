@@ -6,7 +6,7 @@ const RequiredAdmin = () => {
   const [admin] = useAdmin();
 
   if (!admin) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
   return <Outlet />;
 };
