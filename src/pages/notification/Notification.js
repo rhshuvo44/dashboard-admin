@@ -11,7 +11,7 @@ const Notification = () => {
     toast.success("Success Create Notification");
   };
   return (
-    <div className="card shadow-2xl">
+    <div className="card shadow-2xl mt-10">
       <SectionTitle>Notification Create</SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)} className="p-10">
         <input

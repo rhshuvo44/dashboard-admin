@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import Loading from "../layout/Loading";
 
 const Payment = () => {
-  const count = 89;
+  const count = 50;
   const [page, setPage] = useState(0);
   const size = 10;
   const pages = Math.ceil(count / size);

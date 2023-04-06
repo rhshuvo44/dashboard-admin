@@ -43,10 +43,10 @@ const ProjectAdd = () => {
       });
   };
   return (
-    <div className="card shadow-xl">
+    <div className="card shadow-xl mt-10">
       <div className="card-body">
         <SectionTitle> Add New Project</SectionTitle>
-        <form onSubmit={handleSubmit(onSubmit)} className="px-10">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             placeholder="Project Name"

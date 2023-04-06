@@ -7,7 +7,7 @@ import Loading from "../../layout/Loading";
 
 const NoticeAll = () => {
   const [page, setPage] = useState(0);
-  const count = 89;
+  const count = 50;
   const size = 10;
   const pages = Math.ceil(count / size);
   const { data: notifications, isLoading } = useQuery({

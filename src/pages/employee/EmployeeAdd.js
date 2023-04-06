@@ -18,10 +18,10 @@ const EmpoleeAdd = () => {
     });
   };
   return (
-    <div className="card shadow-xl">
+    <div className="card shadow-xl mt-10">
       <div className="card-body">
         <SectionTitle>Employee Add For Project</SectionTitle>
-        <form onSubmit={handleSubmit(onSubmit)} className="px-10">
+        <form onSubmit={handleSubmit(onSubmit)} >
           <input
             type="text"
             placeholder="Employee Name"

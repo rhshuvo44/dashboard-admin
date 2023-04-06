@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import Loading from "../../layout/Loading";
 
 const Projects = () => {
-  const count = 89;
+  const count = 50;
   const size = 10;
   const [page, setPage] = useState(0);
   const {

@@ -6,9 +6,8 @@ import Button from "../../component/Button";
 import SectionTitle from "../../component/SectionTitle";
 import Loading from "../../layout/Loading";
 const Employes = () => {
-  const count = 89;
+  const count = 50;
   const size = 10;
-  // const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
 
   const {
@@ -66,7 +65,7 @@ const Employes = () => {
         </table>
       </div>
       <div className="flex justify-center mt-5">
-        <div className="btn-group ">
+        <div className="btn-group">
           {[...Array(pages).keys()].map((number) => (
             <button
               key={number}

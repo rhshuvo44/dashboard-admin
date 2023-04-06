@@ -6,7 +6,7 @@ import SectionTitle from "../../component/SectionTitle";
 import Loading from "../../layout/Loading";
 
 const Requisition = () => {
-  const count = 89;
+  const count = 50;
   const size = 10;
   const [page, setPage] = useState(0);
   const { data: requisitons, isLoading } = useQuery({
