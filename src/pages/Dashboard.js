@@ -1,7 +1,10 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
+  const [admin] = useAdmin();
+  const { pathname } = useLocation();
   return (
     <div className="drawer drawer-mobile">
       <input id="admin-sidebar" type="checkbox" className="drawer-toggle" />
@@ -9,28 +12,39 @@ const Dashboard = () => {
         {/* <!-- Page content here --> */}
         <Outlet />
       </div>
-      <div className="drawer-side">
-        <label htmlFor="admin-sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 bg-base-100 text-base-content gap-4 mt-16">
-          {/* <!-- Sidebar content here --> */}
-          
-          <li>
-            <NavLink to="employee">Employee</NavLink>
-          </li>
-          <li>
-            <NavLink to="payment">Payment</NavLink>
-          </li>
-          <li>
-            <NavLink to="project">Projects</NavLink>
-          </li>
-          <li>
-            <NavLink to="requisition">Requisition</NavLink>
-          </li>
-          <li>
-            <NavLink to="Notification">Notification</NavLink>
-          </li>
-        </ul>
-      </div>
+      {!pathname.includes("login") && (
+        <>
+          <div className="drawer-side">
+            <label htmlFor="admin-sidebar" className="drawer-overlay"></label>
+            <ul className="menu p-4 w-80 bg-base-100 text-base-content gap-4 mt-16">
+              {/* <!-- Sidebar content here --> */}
+
+              {admin && (
+                <>
+                  <li>
+                    <NavLink to="employee">Employee</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="payment">Payment</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="project">Projects</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="application">Application</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="requisition">Requisition</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="Notification">Notification</NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   );
 };

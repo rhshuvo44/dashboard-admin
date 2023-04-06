@@ -1,12 +1,32 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import SectionTitle from "../component/SectionTitle";
+import BackendApiUrl from "../api/BackendApiUrl";
 import InputSelect from "../component/InputSelect";
+import SectionTitle from "../component/SectionTitle";
+import { toast } from "react-hot-toast";
+import Loading from "../layout/Loading";
 
 const Payment = () => {
   const count = 89;
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(10);
+  const size = 10;
   const pages = Math.ceil(count / size);
+  const {
+    data: payments,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["payments"],
+    queryFn: async () => await BackendApiUrl.get(`/users`),
+  });
+  if (isLoading) {
+    return <Loading />;
+  }
+  const paymentStatus = (id) => {
+    // ============ BACKEND Put API ==============
+    refetch();
+    toast.success("Successfully update Payment Status");
+  };
   return (
     <div className="py-10">
       <SectionTitle>All Payments</SectionTitle>
@@ -23,55 +43,26 @@ const Payment = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>500</td>
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="approved">Approved</option>
-                  <option value="success">Success</option>
-                </InputSelect>
-              </td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>500</td>
-
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="approved">Approved</option>
-                  <option value="success">Success</option>
-                </InputSelect>
-              </td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>500</td>
-              <td>
-                <InputSelect className="select select-bordered bg-transparent select-xs">
-                  <option disabled selected value="padding">
-                    Padding
-                  </option>
-                  <option value="approved">Approved</option>
-                  <option value="success">Success</option>
-                </InputSelect>
-              </td>
-            </tr>
+            {payments.data.map((payment) => (
+              <tr key={payment.id}>
+                <td>{payment.id}</td>
+                <td>{payment.name}</td>
+                <td>{payment.username}</td>
+                <td>500</td>
+                <td>
+                  <InputSelect
+                    onChange={() => paymentStatus(payment.id)}
+                    className="select select-bordered bg-transparent select-xs"
+                  >
+                    <option disabled selected value="padding">
+                      Padding
+                    </option>
+                    <option value="approved">Approved</option>
+                    <option value="success">Success</option>
+                  </InputSelect>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

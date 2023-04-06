@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../component/Button";
 import logo from "../img/logo/sg-white.png";
 import user from "../img/user/ripon.jpg";
-import Button from "../component/Button";
 const Header = () => {
+  const [notices, setNotices] = useState([]);
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then((res) => res.json())
+      .then((data) => {
+        setNotices(data);
+      });
+  }, []);
+
+  const newNotices = notices.reverse().slice(0, 5);
+
   return (
     <div className="navbar bg-base-100 top-0 fixed z-1 px-5 lg:px-20 text-white">
       <div className="flex-1">
-        <Link to="https://ripon.vercel.app/">
+        <Link to="https://sarkargroupofcompanies.com/">
           <img src={logo} alt="logo" title="logo" className="w-32" />
         </Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <button className="btn btn-ghost btn-circle">
+            <button className="btn btn-ghost btn-circle ">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +41,9 @@ const Header = () => {
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
-                <span className="badge badge-xs badge-primary indicator-item"></span>
+                <span className="badge badge-xs badge-primary indicator-item">
+                  {newNotices.length}
+                </span>
               </div>
             </button>
           </label>
@@ -38,13 +51,20 @@ const Header = () => {
             tabIndex={0}
             className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow text-white"
           >
-            <div className="card-body">
-              <span className="text-info">Notificatrion Title</span>
-              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
-              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
-              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
-              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
-              <Link to={`/noticeDetails/${1}`}>notice 1</Link>
+            <div className="card-body last:border-b-0">
+              <span className="text-info font-bold text-center border-b-2 border-primary">
+                Notification
+              </span>
+
+              {newNotices.map((notice) => (
+                <Link
+                  className="border-b-2 "
+                  key={notice.id}
+                  to={`/noticeDetails/${notice.id}`}
+                >
+                  {notice.title.slice(0, 25)}
+                </Link>
+              ))}
               <div className="card-actions flex justify-center">
                 <Button path="/noticeAll">View All Notice</Button>
               </div>

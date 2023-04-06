@@ -19,12 +19,18 @@ import ProjectDetails from "./pages/project/ProjectDetails";
 import Projects from "./pages/project/Projects";
 import Requisition from "./pages/requisition/Requisition";
 import RequisitonDetails from "./pages/requisition/RequisitonDetails";
+import Application from "./pages/application/Application";
+import ApplicationDetails from "./pages/application/ApplicationDetails";
+import Login from "./pages/Login";
 const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
       <Routes>
+        <Route element={<Dashboard />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route element={<RequireAuth />}>
           <Route element={<RequiredAdmin />}>
             <Route element={<Dashboard />}>
@@ -44,6 +50,11 @@ function App() {
               <Route
                 path="/requisitonDetails/:id"
                 element={<RequisitonDetails />}
+              />
+              <Route path="/application" element={<Application />} />
+              <Route
+                path="/applicationDetails/:id"
+                element={<ApplicationDetails />}
               />
             </Route>
           </Route>

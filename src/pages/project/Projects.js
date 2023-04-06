@@ -6,6 +6,7 @@ import SectionTitle from "../../component/SectionTitle";
 import BackendApiUrl from "../../api/BackendApiUrl";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import Loading from "../../layout/Loading";
 
 const Projects = () => {
   const count = 89;
@@ -20,7 +21,7 @@ const Projects = () => {
     queryFn: async () => await BackendApiUrl.get("/users"),
   });
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Loading />;
   }
   const projectStatus = (id) => {
     // ============ BACKEND POST API ==============

@@ -1,49 +1,45 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import BackendApiUrl from "../../api/BackendApiUrl";
 import SectionTitle from "../../component/SectionTitle";
+import { Link } from "react-router-dom";
 import Loading from "../../layout/Loading";
 
-const Requisition = () => {
+const Application = () => {
   const count = 89;
   const size = 10;
   const [page, setPage] = useState(0);
-  const { data: requisitons, isLoading } = useQuery({
-    queryKey: ["requisiton"],
+  const { data: applications, isLoading } = useQuery({
+    queryKey: ["application"],
     queryFn: async () => await BackendApiUrl.get("/users"),
   });
   if (isLoading) {
-    return <Loading />;
+    return <Loading/>;
   }
 
   const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
-      <SectionTitle>All Requsitions</SectionTitle>
+      <SectionTitle>All Applications</SectionTitle>
       <div className="overflow-x-auto">
         <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
               <th>No</th>
-              <th>Prjoject Name</th>
               <th>Title</th>
-              <th>Details</th>
             </tr>
           </thead>
           <tbody>
-            {requisitons.data.map((user) => (
+            {applications.data.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.phone}</td>
                 <td>
                   <Link
-                    to={`/requisitonDetails/${user.id}`}
-                    className="btn btn-xs btn-info"
+                    className="hover:text-primary"
+                    to={`/applicationDetails/${user.id}`}
                   >
-                    Details
+                    {user.name}
                   </Link>
                 </td>
               </tr>
@@ -67,4 +63,4 @@ const Requisition = () => {
   );
 };
 
-export default Requisition;
+export default Application;

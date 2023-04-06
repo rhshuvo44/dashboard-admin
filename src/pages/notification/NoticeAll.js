@@ -1,14 +1,52 @@
 import React, { useState } from "react";
 import SectionTitle from "../../component/SectionTitle";
+import BackendApiUrl from "../../api/BackendApiUrl";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import Loading from "../../layout/Loading";
 
 const NoticeAll = () => {
-  const count = 89;
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(10);
+  const count = 89;
+  const size = 10;
   const pages = Math.ceil(count / size);
+  const { data: notifications, isLoading } = useQuery({
+    queryKey: ["notification"],
+    queryFn: async () => await BackendApiUrl.get(`/posts`),
+  });
+  if (isLoading) {
+    return <Loading/>;
+  }
+
   return (
     <div>
       <SectionTitle>Notification all</SectionTitle>
+      <div className="overflow-x-auto">
+        <table className="table w-full">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {notifications.data.map((notice) => (
+              <tr key={notice.id}>
+                <td>{notice.id}</td>
+                <td>
+                  <Link
+                    className="hover:text-primary"
+                    to={`/noticeDetails/${notice.id}`}
+                  >
+                    {notice.title}
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="flex justify-center mt-5">
         <div className="btn-group ">
           {[...Array(pages).keys()].map((number) => (

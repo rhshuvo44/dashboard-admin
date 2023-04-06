@@ -4,8 +4,8 @@ import { toast } from "react-hot-toast";
 import BackendApiUrl from "../../api/BackendApiUrl";
 import Button from "../../component/Button";
 import SectionTitle from "../../component/SectionTitle";
+import Loading from "../../layout/Loading";
 const Employes = () => {
- 
   const count = 89;
   const size = 10;
   // const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ const Employes = () => {
     queryFn: async () => await BackendApiUrl.get("/users"),
   });
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Loading />;
   }
   const removeEmployee = (id) => {
     console.log(id);
