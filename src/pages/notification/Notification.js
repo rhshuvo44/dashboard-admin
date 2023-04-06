@@ -14,7 +14,7 @@ const Notification = () => {
     <div className="card shadow-2xl">
       <SectionTitle>Notification Create</SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)} className="p-10">
-        <Input
+        <input
           type="text"
           placeholder="Notification Title"
           required
