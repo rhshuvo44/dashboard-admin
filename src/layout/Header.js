@@ -17,7 +17,7 @@ const Header = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="navbar bg-base-100 top-0 fixed z-1 px-5 lg:px-20 text-white">
+    <div className="navbar bg-base-100 top-0 fixed z-1 px-0 lg:px-20 text-white">
       <div className="flex-1">
         <Link to="https://sarkargroupofcompanies.com/">
           <img src={logo} alt="logo" title="logo" className="w-32" />
