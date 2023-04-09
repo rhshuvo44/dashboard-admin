@@ -8,6 +8,7 @@ import BackendApiUrl from "../../api/BackendApiUrl";
 const EmpoleeAdd = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (employeeInfo) => {
+    // ==============Backend API ==================
     BackendApiUrl.post("/posts", employeeInfo).then((data) => {
       if (data) {
         toast.success("Your New Employee Added");
@@ -21,7 +22,7 @@ const EmpoleeAdd = () => {
     <div className="card shadow-xl mt-10">
       <div className="card-body">
         <SectionTitle>Employee Add For Project</SectionTitle>
-        <form onSubmit={handleSubmit(onSubmit)} >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             placeholder="Employee Name"
@@ -33,6 +34,12 @@ const EmpoleeAdd = () => {
             placeholder="Employee Email"
             className="input input-bordered w-full bg-transparent my-2"
             {...register("email")}
+          />
+          <input
+            type="text"
+            placeholder="Employee Id"
+            className="input input-bordered w-full bg-transparent my-2"
+            {...register("employeeId")}
           />
           <select
             {...register("project")}

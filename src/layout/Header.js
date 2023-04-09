@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import Button from "../component/Button";
 import logo from "../img/logo/sg-white.png";
 import user from "../img/user/ripon.jpg";
+import { signOut } from "firebase/auth";
+import auth from "../firebase.init";
+
 const Header = () => {
   const [notices, setNotices] = useState([]);
   useEffect(() => {
@@ -17,7 +20,7 @@ const Header = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="navbar bg-base-100 top-0 fixed z-1 px-0 lg:px-20 text-white">
+    <div className="navbar bg-base-100 top-0 fixed z-1 px-5 md:px-20 text-white">
       <div className="flex-1">
         <Link to="https://sarkargroupofcompanies.com/">
           <img src={logo} alt="logo" title="logo" className="w-32" />
@@ -90,7 +93,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button>Logout</button>
+                <button onClick={() => signOut(auth)}>Logout</button>
               </li>
             </ul>
           </div>

@@ -2,8 +2,8 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div class="container">
-      <div class="spinner">
+    <div className="container">
+      <div className="spinner">
         <span></span>
         <span></span>
         <span></span>

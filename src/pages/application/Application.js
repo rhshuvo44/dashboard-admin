@@ -4,19 +4,33 @@ import BackendApiUrl from "../../api/BackendApiUrl";
 import SectionTitle from "../../component/SectionTitle";
 import { Link } from "react-router-dom";
 import Loading from "../../layout/Loading";
+import InputSelect from "../../component/InputSelect";
+import { toast } from "react-hot-toast";
 
 const Application = () => {
   const count = 89;
   const size = 10;
   const [page, setPage] = useState(0);
-  const { data: applications, isLoading } = useQuery({
+  const {
+    data: applications,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["application"],
     queryFn: async () => await BackendApiUrl.get("/users"),
   });
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   }
-
+  const applicationStatus = (id) => {
+    // ============ BACKEND Put API ==============
+    BackendApiUrl.put(`/application/${id}`).then((data) => {
+      if (data) {
+        refetch();
+        toast.success("Successfully update application Status");
+      }
+    });
+  };
   const pages = Math.ceil(count / size);
   return (
     <div className="py-10">
@@ -28,19 +42,32 @@ const Application = () => {
             <tr>
               <th>No</th>
               <th>Title</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {applications.data.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
+            {applications.data.map((application) => (
+              <tr key={application.id}>
+                <td>{application.id}</td>
                 <td>
                   <Link
                     className="hover:text-primary"
-                    to={`/applicationDetails/${user.id}`}
+                    to={`/applicationDetails/${application.id}`}
                   >
-                    {user.name}
+                    {application.name}
                   </Link>
+                </td>
+                <td>
+                  <InputSelect
+                    onChange={() => applicationStatus(application.id)}
+                    className="select select-bordered bg-transparent select-xs"
+                  >
+                    <option disabled selected value="padding">
+                      Padding
+                    </option>
+                    <option value="approved">Approved</option>
+                    <option value="rejaction">Rejaction</option>
+                  </InputSelect>
                 </td>
               </tr>
             ))}

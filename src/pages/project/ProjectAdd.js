@@ -6,7 +6,7 @@ import BackendApiUrl from "../../api/BackendApiUrl";
 import { toast } from "react-hot-toast";
 
 // ===========img host api=====================
-const imgApi = "84a5698c1163075e540df1dc6008c8cf";
+const key = process.env.REACT_APP_Image_API;
 
 const ProjectAdd = () => {
   const { register, handleSubmit } = useForm();
@@ -15,7 +15,7 @@ const ProjectAdd = () => {
     const image = data.photo[0];
     const imageAvatar = new FormData();
     imageAvatar.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?key=${imgApi}`;
+    const url = `https://api.imgbb.com/1/upload?key=${key}`;
     fetch(url, {
       method: "POST",
       body: imageAvatar,

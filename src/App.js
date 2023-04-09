@@ -46,7 +46,7 @@ function App() {
               <Route path="/noticeDetails/:id" element={<NoticeDetails />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/updateProfile" element={<UpdateProfile />} />
-              <Route path="/requisition" element={<Requisition />} />
+              <Route path="/requisition" element={<Requisition />} /> 
               <Route
                 path="/requisitonDetails/:id"
                 element={<RequisitonDetails />}

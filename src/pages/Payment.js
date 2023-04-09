@@ -24,8 +24,12 @@ const Payment = () => {
   }
   const paymentStatus = (id) => {
     // ============ BACKEND Put API ==============
-    refetch();
-    toast.success("Successfully update Payment Status");
+    BackendApiUrl.put(`/payment/${id}`).then((data) => {
+      if (data) {
+        refetch();
+        toast.success("Successfully update Payment Status");
+      }
+    });
   };
   return (
     <div className="py-10">
