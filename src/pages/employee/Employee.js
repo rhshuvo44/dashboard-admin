@@ -28,10 +28,13 @@ const Employes = () => {
   };
   const pages = Math.ceil(count / size);
   return (
-    <div className="py-10">
-      <SectionTitle>All Employee Details</SectionTitle>
+    <div className="pt-5">
+      <div className="flex justify-between mb-2">
+        <SectionTitle>All Employee Details</SectionTitle>
+        <Button path={"/employeeAdd"}>Add Employee</Button>
+      </div>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table table-compact w-full">
           {/* head */}
           <thead>
             <tr>
@@ -64,21 +67,18 @@ const Employes = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center mt-2">
         <div className="btn-group">
           {[...Array(pages).keys()].map((number) => (
             <button
               key={number}
               onClick={() => setPage(number)}
-              className={`btn ${page === number && "btn-active"}`}
+              className={`btn btn-xs ${page === number && "btn-active"}`}
             >
               {number + 1}
             </button>
           ))}
         </div>
-      </div>
-      <div className="flex justify-center mt-10">
-        <Button path={"/employeeAdd"}>Add Employee</Button>
       </div>
     </div>
   );

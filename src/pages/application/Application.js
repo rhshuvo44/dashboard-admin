@@ -33,10 +33,10 @@ const Application = () => {
   };
   const pages = Math.ceil(count / size);
   return (
-    <div className="py-10">
+    <div className="py-5">
       <SectionTitle>All Applications</SectionTitle>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table table-compact w-full">
           {/* head */}
           <thead>
             <tr>
@@ -74,12 +74,12 @@ const Application = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-center mt-5">
-        <div className="btn-group ">
+      <div className="flex justify-center mt-2">
+        <div className="btn-group">
           {[...Array(pages).keys()].map((number) => (
             <button
               onClick={() => setPage(number)}
-              className={`btn ${page === number && "btn-active"}`}
+              className={`btn btn-xs ${page === number && "btn-active"}`}
             >
               {number + 1}
             </button>

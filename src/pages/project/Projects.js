@@ -30,10 +30,13 @@ const Projects = () => {
   };
   const pages = Math.ceil(count / size);
   return (
-    <div className="py-10">
-      <SectionTitle>All Projects</SectionTitle>
+    <div className="pt-5">
+      <div className="flex justify-between mb-2">
+        <SectionTitle>All Projects</SectionTitle>
+        <Button path={"/projectadd"}>Add Project</Button>
+      </div>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table table-compact w-full">
           {/* head */}
           <thead>
             <tr>
@@ -41,7 +44,6 @@ const Projects = () => {
               <th>Name</th>
               <th>Location</th>
               <th>Status</th>
-              <th>Details</th>
             </tr>
           </thead>
           <tbody>
@@ -80,15 +82,12 @@ const Projects = () => {
           {[...Array(pages).keys()].map((number) => (
             <button
               onClick={() => setPage(number)}
-              className={`btn ${page === number && "btn-active"}`}
+              className={`btn btn-xs ${page === number && "btn-active"}`}
             >
               {number + 1}
             </button>
           ))}
         </div>
-      </div>
-      <div className="flex justify-center mt-10">
-        <Button path={"/projectadd"}>Add Project</Button>
       </div>
     </div>
   );
