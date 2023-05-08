@@ -1,13 +1,16 @@
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../component/Button";
-import logo from "../img/logo/sg-white.png";
-import user from "../img/user/ripon.jpg";
-import { signOut } from "firebase/auth";
 import auth from "../firebase.init";
+import logo from "../img/logo/sg-white.png";
+import Loading from "./Loading";
 
 const Header = () => {
   const [notices, setNotices] = useState([]);
+  const [user, loading] = useAuthState(auth);
+
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((res) => res.json())
@@ -15,19 +18,21 @@ const Header = () => {
         setNotices(data);
       });
   }, []);
-
+ 
   const newNotices = notices.reverse().slice(0, 5);
   const { pathname } = useLocation();
-
+  if (loading) {
+    return <Loading/>
+  }
   return (
-    <div className="navbar bg-base-100 top-0 fixed z-1 px-5 md:px-20 text-white">
+    <div className="navbar bg-base-100 top-0 fixed z-1 px-3  text-white">
       <div className="flex-1">
         <Link to="https://sarkargroupofcompanies.com/">
           <img src={logo} alt="logo" title="logo" className="w-32" />
         </Link>
       </div>
 
-      {!pathname.includes("login") && (
+      {!pathname?.includes("login") && (
         <div className="flex-none gap-2">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -48,7 +53,7 @@ const Header = () => {
                     />
                   </svg>
                   <span className="badge badge-xs badge-primary indicator-item">
-                    {newNotices.length}
+                    {newNotices?.length}
                   </span>
                 </div>
               </button>
@@ -62,7 +67,7 @@ const Header = () => {
                   Notification
                 </span>
 
-                {newNotices.map((notice) => (
+                {newNotices?.map((notice) => (
                   <Link
                     className="border-b-2 "
                     key={notice.id}
@@ -80,7 +85,7 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-24 rounded-full">
-                <img src={user} alt="avatar" title="user" />
+                <img src={user?.photoURL} alt="avatar" title="user" />
               </div>
             </label>
             <ul

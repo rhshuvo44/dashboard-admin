@@ -24,7 +24,7 @@ const Projects = () => {
     return <Loading />;
   }
   const projectStatus = (id) => {
-    // ============ BACKEND POST API ==============
+    // ============ BACKEND Put API ==============
     refetch();
     toast.success("Successfully update Project Status");
   };
@@ -50,7 +50,14 @@ const Projects = () => {
             {projects.data.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                <td>{user.name}</td>
+                <td>
+                  <Link
+                    to={`/projectDetails/${user.id}`}
+                    className="hover:text-primary"
+                  >
+                    {user.name}
+                  </Link>
+                </td>
                 <td>{user.phone}</td>
                 <td>
                   <InputSelect
@@ -63,14 +70,6 @@ const Projects = () => {
                     <option value="running">Running</option>
                     <option value="complete">Completed</option>
                   </InputSelect>
-                </td>
-                <td>
-                  <Link
-                    to={`/projectDetails/${user.id}`}
-                    className="btn btn-xs btn-info"
-                  >
-                    Details
-                  </Link>
                 </td>
               </tr>
             ))}

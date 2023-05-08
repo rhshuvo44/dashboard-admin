@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import BackendApiUrl from "../../api/BackendApiUrl";
 import SectionTitle from "../../component/SectionTitle";
 import Loading from "../../layout/Loading";
+import { toast } from "react-hot-toast";
+import InputSelect from "../../component/InputSelect";
 
 const Requisition = () => {
   const count = 50;
@@ -18,6 +20,14 @@ const Requisition = () => {
   }
 
   const pages = Math.ceil(count / size);
+  const requisitonStatus = (id) => {
+    // ============ BACKEND Put API ==============
+    BackendApiUrl.put(`/requisition/${id}`).then((data) => {
+      if (data) {
+        toast.success("Successfully update requsition Status");
+      }
+    });
+  };
   return (
     <div className="py-5">
       <SectionTitle>All Requsitions</SectionTitle>
@@ -29,22 +39,32 @@ const Requisition = () => {
               <th>No</th>
               <th>Prjoject Name</th>
               <th>Title</th>
-              <th>Details</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {requisitons.data.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.phone}</td>
+            {requisitons.data.map((requisiton) => (
+              <tr key={requisiton.id}>
+                <td>{requisiton.id}</td>
                 <td>
                   <Link
-                    to={`/requisitonDetails/${user.id}`}
-                    className="btn btn-xs btn-info"
+                    to={`/requisitonDetails/${requisiton.id}`}
+                    className="hover:text-primary"
                   >
-                    Details
+                    {requisiton.name}
                   </Link>
+                </td>
+                <td>{requisiton.username}</td>
+                <td>
+                  <InputSelect
+                    onChange={() => requisitonStatus(requisiton.id)}
+                    className="select select-bordered bg-transparent select-xs"
+                  >
+                    <option disabled selected value="pending">
+                    Approved
+                    </option>
+                    <option value="approved">Successfull</option>
+                  </InputSelect>
                 </td>
               </tr>
             ))}

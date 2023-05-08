@@ -5,14 +5,18 @@ import Input from "../../component/Input";
 import SectionTitle from "../../component/SectionTitle";
 
 const Notification = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
+    // =================BACKEND API=====================
     console.log(data);
+    reset();
     toast.success("Success Create Notification");
   };
   return (
-    <div className="card shadow-2xl mt-10">
-      <SectionTitle>Notification Create</SectionTitle>
+    <div className="card shadow-2xl mt-10 ">
+      <div className="text-center mt-2">
+        <SectionTitle>Notification Create</SectionTitle>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="p-10">
         <input
           type="text"

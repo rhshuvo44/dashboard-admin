@@ -42,6 +42,7 @@ const Application = () => {
             <tr>
               <th>No</th>
               <th>Title</th>
+              <th>Name</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -57,6 +58,8 @@ const Application = () => {
                     {application.name}
                   </Link>
                 </td>
+                <td>{application.username}</td>
+
                 <td>
                   <InputSelect
                     onChange={() => applicationStatus(application.id)}
