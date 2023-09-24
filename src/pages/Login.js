@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import Input from "../component/Input";
@@ -13,19 +10,18 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   let loginError;
-  if (error || gerror) {
+  if (error) {
     return (loginError = <p className="text-red-500"> {error?.message}</p>);
   }
-  if (loading || gloading) {
+  if (loading) {
     return <Loading />;
   }
-  if (user || guser) {
+  if (user) {
     return navigate(from, { replace: true });
   }
   const onSubmit = (data) => {
@@ -56,18 +52,6 @@ const Login = () => {
             <Input type="submit" className="btn btn-primary" value="Login" />
           </form>
           {loginError}
-          <button class="google-btn" onClick={() => signInWithGoogle()}>
-            <div class="google-icon-wrapper">
-              <img
-                class="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                alt="google-icon"
-              />
-            </div>
-            <p class="btn-text">
-              <b>Sign in with google</b>
-            </p>
-          </button>
         </div>
       </div>
     </div>
