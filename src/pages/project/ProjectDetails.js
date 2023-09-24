@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SectionTitle from "../../component/SectionTitle";
-import ripon from "../../img/user/ripon.jpg";
 const ProjectDetails = () => {
   const [project, setProject] = useState({});
   const { id } = useParams();
@@ -23,12 +22,36 @@ const ProjectDetails = () => {
         <div className="card w-full max-w-sm border-0">
           <div className="card-body">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              <img src={ripon} alt="" title="" />
-              <img src={ripon} alt="" title="" />
-              <img src={ripon} alt="" title="" />
-              <img src={ripon} alt="" title="" />
-              <img src={ripon} alt="" title="" />
-              <img src={ripon} alt="" title="" />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                title=""
+              />
             </div>
           </div>
         </div>

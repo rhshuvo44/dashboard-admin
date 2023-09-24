@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import BackendApiUrl from "../api/BackendApiUrl";
 
 const useAdmin = () => {
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState({
+    name: "ripon",
+    email: "rhshuvo@gmail.com",
+    password: "123456s",
+  });
   const [adminLoading, setAdminLoading] = useState(true);
   const user = true;
   useEffect(() => {

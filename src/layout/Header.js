@@ -18,11 +18,11 @@ const Header = () => {
         setNotices(data);
       });
   }, []);
- 
+
   const newNotices = notices.reverse().slice(0, 5);
   const { pathname } = useLocation();
   if (loading) {
-    return <Loading/>
+    return <Loading />;
   }
   return (
     <div className="navbar bg-base-100 top-0 fixed z-1 px-3  text-white">
